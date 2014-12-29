@@ -1,0 +1,52 @@
+{% assign lvl = page.url | append:'X' | split:'/' | size %}
+{% capture relative %}{% for i in (3..lvl) %}../{% endfor %}{% endcapture %}
+
+  <!-- Directives -->
+  <li class="menu-section">
+    <a href="#" class="api-section">
+       Directives
+    </a>
+    <ul>
+        <@ for doc in docs @><@ if doc.docType == "directive" @>
+        <li>
+            <a href="{{relative}}{{ page.versionHref | replace_first: '/', '' }}/<$ doc.path $>index.html">
+                <$ doc.name | dashCase $>
+            </a>
+        </li>
+        <@ endif @><@ endfor @>
+    </ul>
+  </li>
+
+
+  <!-- Side Menus -->
+  <li class="menu-section">
+    <a href="#" class="api-section">
+       Services
+    </a>
+    <ul>
+        <@ for doc in docs @><@ if doc.docType == "service" @>
+        <li>
+            <a href="{{relative}}{{ page.versionHref | replace_first: '/', '' }}/<$ doc.path $>index.html">
+                <$ doc.name $>
+            </a>
+        </li>
+        <@ endif @><@ endfor @>
+    </ul>
+  </li>
+
+
+  <!-- Side Menus -->
+  <li class="menu-section">
+    <a href="#" class="api-section">
+       Providers
+    </a>
+    <ul>
+        <@ for doc in docs @><@ if doc.docType == "provider" @>
+        <li>
+            <a href="{{relative}}{{ page.versionHref | replace_first: '/', '' }}/<$ doc.path $>index.html">
+                <$ doc.name $>
+            </a>
+        </li>
+        <@ endif @><@ endfor @>
+    </ul>
+  </li>
